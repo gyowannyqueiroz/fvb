@@ -1,0 +1,18 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style="color: red"><%= error %></p>
+  <%end%>
+<%end%>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h1 class="card-title">New Currency</h1>
+    <%= form_for @currency do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit %>
+    <%end%>
+  </div>
+</div>
+

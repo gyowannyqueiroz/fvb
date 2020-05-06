@@ -1,0 +1,30 @@
+<div class="card w-100">
+  <div class="card-body">
+    <div class="card-title">
+      <h1 class="card-title">Clients</h1>
+      <%= button_to "New Client", new_client_path, method: :get %>
+    </div>
+    <table class="card-table table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Actions</th>
+          <th scope="col">Client</th>
+          <th scope="col">Parent</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <th scope="row">
+            <%= button_to client_path(client), method: :delete, class: 'btn btn-mini btn-danger' do %>
+              <i class="glyphicon glyphicon-remove">x</i>
+            <% end %>
+          </th>
+          <td><%= link_to client.name, edit_client_path(client) %></td>
+          <td><% unless client.parent_client.nil? %><%= client.parent_client.name %><% end %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style="color: red"><%= error %></p>
+  <% end %>
+<% end %>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h1 class="card-title">New Transaction</h1>
+    <%= form_for @account_transaction do |f| %>
+      <div class="form-group">
+        <div id="client_select" class="form-group">
+          <label for="<%= :account_id %>">Account</label>
+          <%= f.collection_select :account_id, Account.all, :id, :account_name, { :prompt => "Select account..." }, { :class => "form-control" } %>
+        </div>
+        <div class="form-group">
+          <label for="<%= :date %>">Date/Time</label>
+          <%= f.datetime_select :date, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="<%= :amount %>"><%= f.label :amount %></label>
+          <%= f.number_field :amount, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="<%= :description %>"><%= f.label :description %></label>
+          <%= f.text_field :description, :class => "form-control" %>
+        </div>
+
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= javascript_pack_tag('account.js') %>

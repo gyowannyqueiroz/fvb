@@ -1,0 +1,36 @@
+<div class="card w-100">
+  <div class="card-body">
+    <div class="card-title">
+      <h1 class="card-title">Accounts</h1>
+      <%= button_to "New Account", new_account_path, method: :get %>
+    </div>
+    <table class="card-table table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Actions</th>
+          <th scope="col">Account #</th>
+          <th scope="col">Client</th>
+          <th scope="col">Initial Balance</th>
+          <th scope="col">Current Balance</th>
+          <th scope="col">Currency</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <th scope="row">
+            <%= button_to account_path(account), method: :delete, class: 'btn btn-mini btn-danger' do %>
+              <i class="glyphicon glyphicon-remove">x</i>
+            <% end %>
+          </th>
+          <td><%= link_to account.id, edit_account_path(account) %></td>
+          <td><%= account.client.name %></td>
+          <td style="text-align:right"><%= account.initial_amount %></td>
+          <td style="text-align:right"><%= account_balance(account.id) %></td>
+          <td><%= account.currency.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

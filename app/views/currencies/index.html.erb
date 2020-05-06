@@ -1,0 +1,17 @@
+<div class="card w-100">
+  <div class="card-body">
+    <div class="card-title">
+      <h1 class="card-title">Currencies</h1>
+      <%= button_to "New Currency", new_currency_path, method: :get %>
+    </div>
+    <table>
+      <tbody>
+      <% @currencies.each do |currency| %>
+        <tr><td><%= button_to "X", currency_path(currency), method: :delete %></td><td><%= link_to currency.name, edit_currency_path(currency) %></td></tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

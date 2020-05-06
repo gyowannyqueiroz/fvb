@@ -1,0 +1,35 @@
+<div class="card w-100">
+  <div class="card-body">
+    <div class="card-title">
+      <h1 >Transactions</h1>
+      <%= button_to "New Transaction", new_account_transaction_path, method: :get %>
+    </div>
+    <table class="card-table table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Account</th>
+          <th scope="col">Date/Time</th>
+          <th scope="col">Description</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @account_transactions.each do |account_transaction| %>
+        <tr>
+          <th scope="row"><%= account_transaction.id %></th>
+          <td><%= account_transaction.account.client.name %> (<%= account_transaction.account.id %>)</td>
+          <td><%= account_transaction.date %></td>
+          <td><%= account_transaction.description %></td>
+          <td style="text-align:right"><%= account_transaction.amount %></td>
+          <td><%= account_transaction.account.currency.name %></td>
+          <td style="text-align:right"><%= account_transaction.balance %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
